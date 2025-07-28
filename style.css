@@ -1,0 +1,245 @@
+/* Basic Setup */
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #000;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.container {
+    text-align: center;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Initial Screen Styling */
+#typing-text {
+    font-size: 2rem;
+    color: #eee;
+    border-right: .15em solid orange;
+    white-space: nowrap;
+    overflow: hidden;
+    /* **** THIS LINE IS CHANGED (timing updated for new text) **** */
+    animation: typing 4.5s steps(45, end), blink-caret .75s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: orange; }
+}
+
+#open-button {
+    margin-top: 20px;
+    padding: 10px 25px;
+    font-size: 1.2rem;
+    color: white;
+    background-color: #8A2BE2; /* Purple */
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    opacity: 0;
+    animation: fadeIn 1s ease-in forwards;
+    /* **** THIS LINE IS CHANGED (delay updated for new text) **** */
+    animation-delay: 4.6s; /* Wait for typing to finish */
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+/* Flower Screen Styling */
+.flower-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+.love-text {
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    width: 90%;
+    transform: translateX(-50%);
+    /* **** THIS LINE IS CHANGED (font-size adjusted for longer text) **** */
+    font-size: 2.5rem;
+    color: #fff;
+    opacity: 0;
+    animation: fadeIn 2s ease-in forwards;
+    animation-delay: 1s; /* Delay for effect */
+    z-index: 100;
+}
+
+.night {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: rotateZ(45deg);
+    animation: night-sky 200s linear infinite;
+}
+
+.night .shooting_star {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    height: 2px;
+    background: linear-gradient(-45deg, #5f91ff, rgba(0, 0, 255, 0));
+    border-radius: 999px;
+    filter: drop-shadow(0 0 6px #699bff);
+    animation: tail 3s ease-in-out infinite, shooting 3s ease-in-out infinite;
+}
+
+/* All the detailed CSS for flowers, leaves, stems, grass, and animations */
+/* (This part remains the same) */
+:root {
+  --green: #0b4a1a;
+  --light-green: #297a29;
+}
+.flowers {
+  position: relative;
+  top: -100px;
+  transform: scale(0.9);
+}
+.flower {
+  position: absolute;
+  left: 50%;
+  bottom: 20vh;
+  transform-origin: bottom center;
+}
+.flower--1 {
+  transform: translateX(-50%) rotate(0deg);
+  animation: grow-1 3s 1s ease-in-out forwards;
+}
+.flower--2 {
+  transform: translateX(-50%) rotate(-15deg);
+  animation: grow-2 3s 1.2s ease-in-out forwards;
+}
+.flower--3 {
+  transform: translateX(-50%) rotate(15deg);
+  animation: grow-3 3s 1.4s ease-in-out forwards;
+}
+
+@keyframes grow-1 {
+  0% { transform: translateX(-50%) rotate(0deg) scale(0); }
+  100% { transform: translateX(-50%) rotate(0deg) scale(1); }
+}
+@keyframes grow-2 {
+  0% { transform: translateX(-50%) rotate(-15deg) scale(0); }
+  100% { transform: translateX(-50%) rotate(-15deg) scale(1); }
+}
+@keyframes grow-3 {
+  0% { transform: translateX(-50%) rotate(15deg) scale(0); }
+  100% { transform: translateX(-50%) rotate(15deg) scale(1); }
+}
+
+.flower__leafs {
+  position: relative;
+  transform-origin: bottom center;
+  animation: open-flower 2s 2s forwards;
+}
+@keyframes open-flower {
+  0% { transform: scale(0); }
+  100% { transform: scale(1); }
+}
+
+.flower__leaf {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform-origin: bottom center;
+  width: 50px;
+  height: 100px;
+  background-color: #fff;
+  border-radius: 50%;
+  filter: drop-shadow(0 0 10px white);
+}
+.flower__leaf--1 { transform: translateX(-50%) rotate(-30deg); }
+.flower__leaf--2 { transform: translateX(-50%) rotate(30deg); }
+.flower__leaf--3 { transform: translateX(-50%) rotate(-80deg); }
+.flower__leaf--4 { transform: translateX(-50%) rotate(80deg); }
+
+.flower__white-circle {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #fff;
+}
+.flower__light {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 10px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #ff0;
+  filter: blur(15px);
+  animation: light-up 3s 3s infinite alternate;
+}
+@keyframes light-up {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.flower__light--1 { transform: translateX(-50%) rotate(-30deg) translate(0, -10px); }
+.flower__light--2 { transform: translateX(-50%) rotate(30deg) translate(0, -10px); }
+/* ... and so on for all lights, slightly varied positions */
+
+.flower__line {
+  height: 55vh;
+  width: 10px;
+  background-color: var(--green);
+  position: relative;
+  margin-left: -5px;
+  border-radius: 20px 20px 0 0;
+}
+
+.flower__line__leaf {
+  position: absolute;
+  width: 60px;
+  height: 20px;
+  background-color: var(--light-green);
+  border-radius: 0 100% 0 100%;
+}
+.flower__line__leaf--1 { top: 10vh; left: -30px; transform: rotate(-30deg); }
+.flower__line__leaf--2 { top: 20vh; left: 10px; transform: rotate(200deg); }
+.flower__line__leaf--3 { top: 30vh; left: -30px; transform: rotate(-30deg); }
+.flower__line__leaf--4 { top: 40vh; left: 10px; transform: rotate(200deg); }
+
+/* Grass */
+.growing-grass {
+  position: absolute;
+  bottom: -100px;
+  width: 100%;
+  animation: grow-grass 2s 2.5s forwards;
+  transform-origin: bottom;
+  transform: scaleY(0);
+}
+@keyframes grow-grass {
+  to { transform: scaleY(1); }
+}
+.flower__grass {
+    position: absolute;
+    bottom: 0;
+    width: 200px;
+    height: 100px;
+    background: var(--green);
+    clip-path: polygon(10% 100%, 20% 0, 30% 100%, 40% 10%, 50% 100%, 60% 0, 70% 100%, 80% 20%, 90% 100%, 100% 0, 100% 100%, 0 100%);
+}
+.flower__grass--1 { left: 0; }
+.flower__grass--2 { right: 0; }
